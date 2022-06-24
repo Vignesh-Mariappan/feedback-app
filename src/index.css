@@ -238,9 +238,10 @@ input:focus {
 }
 
 .home-link:hover {
-  background-image: linear-gradient(90deg, rgb(184, 35, 112) 1%, rgb(201, 75, 94) 83%, rgb(223, 100, 105) 100%);
+  /* background-image: linear-gradient(90deg, rgb(184, 35, 112) 1%, rgb(201, 75, 94) 83%, rgb(223, 100, 105) 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color:rgb(201, 75, 94)!important;
 }
 
 /* .home-link-left-arrow:hover {
