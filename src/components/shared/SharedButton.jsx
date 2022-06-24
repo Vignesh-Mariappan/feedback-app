@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const SharedButton = ({ type, version, isDisabled, children }) => {
   return (
