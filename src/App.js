@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import feedbackdata from './data/feedbackdata';
+import AboutPage from './pages/AboutPage';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
 
 function App() {
+  const [feedback, setFeedback] = useState(feedbackdata);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Header />
+      <div className='container'>
+        <Routes>
+          <Route path='/' element={<HomePage feedback={feedback} setFeedback={setFeedback} />} />
+          <Route path='/about' element={<AboutPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }
