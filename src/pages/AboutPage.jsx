@@ -7,13 +7,13 @@ const AboutPage = () => {
   return (
     <Card>
       <div className='about'>
-        <h1>About Feedback UI</h1>
+        <h2>About Feedback UI</h2>
         <p>This app is to leave feedback for the book "Can't hurt me" by David Goggins.</p>
         <p style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-end' }}>
           <span>Powered by React</span> <FaReact fontSize='32px' color='#61dafb' />
         </p>
-        <Link to='/' style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-start', color: 'black' }}>
-          <FaArrowLeft />
+        <Link to='/' style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'flex-start', color: 'black' }} className='home-link'>
+          <FaArrowLeft className='home-link-left-arrow' />
           Back to Home Page
         </Link>
       </div>

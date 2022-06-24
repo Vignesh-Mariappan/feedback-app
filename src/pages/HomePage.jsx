@@ -7,9 +7,9 @@ import AboutLinkIcon from '../components/AboutLinkIcon';
 const HomePage = ({ feedback, setFeedback }) => {
   return (
     <div>
-      <FeedbackForm feedback={feedback} handleInsert={setFeedback} />
-      <FeedbackStats feedback={feedback} />
-      <FeedbackList feedback={feedback} handleDelete={setFeedback} />
+      <FeedbackForm />
+      <FeedbackStats />
+      <FeedbackList />
       <AboutLinkIcon />
     </div>
   );

@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from './shared/Card';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaEdit } from 'react-icons/fa';
+import FeedbackContext from '../context/FeedbackContext';
 
-const FeedbackItem = ({ item: { id, rating, text }, handleDelete, feedback }) => {
+const FeedbackItem = ({ item: { id, rating, text } }) => {
+  // get the feedback from the context
+  let { feedback, setFeedback, setFeedbackEdit } = useContext(FeedbackContext);
+
   const deleteFeedback = () => {
-    handleDelete(feedback.filter((item) => item.id !== id));
+    setFeedback(feedback.filter((item) => item.id !== id));
+  };
+
+  const editFeedback = () => {
+    setFeedbackEdit({
+      item: {
+        id: id,
+        rating: rating,
+        text: text,
+      },
+      editFlag: true,
+    });
   };
 
   return (
@@ -12,6 +27,9 @@ const FeedbackItem = ({ item: { id, rating, text }, handleDelete, feedback }) =>
       <div className='num-display'>{rating}</div>
       <button onClick={deleteFeedback} className='close'>
         <FaTimes color='red' />
+      </button>
+      <button className='edit' onClick={editFeedback}>
+        <FaEdit color='blue' />
       </button>
       <div className='text-display'>{text}</div>
     </Card>

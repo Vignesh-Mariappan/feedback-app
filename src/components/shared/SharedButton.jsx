@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SharedButton = ({ type, version, isDisabled, children }) => {
+const SharedButton = ({ type, version, isDisabled, children, styling }) => {
   return (
-    <button type={type} className={`btn btn-${version}`} disabled={isDisabled}>
+    <button type={type} className={`btn btn-${version}`} disabled={isDisabled} style={styling}>
       {children}
     </button>
   );

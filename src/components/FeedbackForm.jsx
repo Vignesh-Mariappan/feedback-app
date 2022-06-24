@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Card from './shared/Card';
 import SharedButton from './shared/SharedButton';
 import RatingSelect from './RatingSelect';
+import FeedbackContext from '../context/FeedbackContext';
 
-const FeedbackForm = ({ handleInsert, feedback }) => {
+const FeedbackForm = () => {
+  // get the feedback from the context
+  let { feedback, setFeedback, feedbackEdit, setFeedbackEdit } = useContext(FeedbackContext);
+
   const [text, setText] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState('');
@@ -29,19 +33,50 @@ const FeedbackForm = ({ handleInsert, feedback }) => {
     setRating(rating);
   };
 
+  useEffect(() => {
+    const {
+      item: { id, text, rating },
+      editFlag,
+    } = feedbackEdit;
+    if (feedbackEdit.editFlag) {
+      setText(text);
+      setRating(rating);
+      setBtnDisabled(false);
+    }
+  }, [feedbackEdit]);
+
   /* 
     on clicking the submit button in the form, the following method is called
   */
   const insertFeedback = (event) => {
     event.preventDefault();
-    let newFeedback = {
-      id: Date.now(),
-      rating: rating,
-      text: text,
-    };
+    if (feedbackEdit.editFlag) {
+      setFeedback(
+        feedback.map((item) =>
+          item.id === feedbackEdit.item.id
+            ? {
+                ...item,
+                rating: rating,
+                text: text,
+              }
+            : item
+        )
+      );
 
-    // handleInsert method is nothing but the setFeedback useState function
-    handleInsert([newFeedback, ...feedback]);
+      setFeedbackEdit({
+        item: {},
+        editFlag: false,
+      });
+    } else {
+      let newFeedback = {
+        id: Date.now(),
+        rating: rating,
+        text: text,
+      };
+
+      // handleInsert method is nothing but the setFeedback useState function
+      setFeedback([newFeedback, ...feedback]);
+    }
 
     // set the text to empty string after clicking the send button, hence the input box becomes empty and make the button disabled
     setText('');
@@ -55,7 +90,7 @@ const FeedbackForm = ({ handleInsert, feedback }) => {
         <RatingSelect select={ratingSelected} />
         <div className='input-group'>
           <input type='text' placeholder='Write a review...' onChange={handleTextChange} value={text} />
-          <SharedButton type='submit' version='primary' isDisabled={btnDisabled}>
+          <SharedButton type='submit' version='primary' isDisabled={btnDisabled} styling={{ marginLeft: '10px', color: 'white' }}>
             Send
           </SharedButton>
         </div>
