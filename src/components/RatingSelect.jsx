@@ -11,9 +11,6 @@ const RatingSelect = ({ select }) => {
   }, [feedbackEdit]);
 
   const handleChange = (event) => {
-    // console.log({ event });
-    // console.log(+event.currentTarget.value);
-
     setSelected(+event.currentTarget.value);
     select(+event.currentTarget.value);
   };

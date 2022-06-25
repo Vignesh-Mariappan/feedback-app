@@ -26,10 +26,10 @@ const FeedbackItem = ({ item: { id, rating, text } }) => {
     <Card>
       <div className='num-display'>{rating}</div>
       <button onClick={deleteFeedback} className='close'>
-        <FaTimes color='red' />
+        <FaTimes color='red' fontSize='1.5rem' />
       </button>
       <button className='edit' onClick={editFeedback}>
-        <FaEdit color='blue' />
+        <FaEdit color='blue' fontSize='1.5rem' />
       </button>
       <div className='text-display'>{text}</div>
     </Card>

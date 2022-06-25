@@ -4,7 +4,7 @@ import FeedbackStats from '../components/FeedbackStats';
 import FeedbackForm from '../components/FeedbackForm';
 import AboutLinkIcon from '../components/AboutLinkIcon';
 
-const HomePage = ({ feedback, setFeedback }) => {
+const HomePage = () => {
   return (
     <div>
       <FeedbackForm />

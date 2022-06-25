@@ -51,17 +51,30 @@ const FeedbackForm = () => {
   const insertFeedback = (event) => {
     event.preventDefault();
     if (feedbackEdit.editFlag) {
-      setFeedback(
-        feedback.map((item) =>
-          item.id === feedbackEdit.item.id
-            ? {
-                ...item,
-                rating: rating,
-                text: text,
-              }
-            : item
-        )
-      );
+      let editedItemIndex = feedback.findIndex((item) => item.id === feedbackEdit.item.id);
+
+      if (editedItemIndex >= 0) {
+        setFeedback(
+          feedback.map((item) =>
+            item.id === feedbackEdit.item.id
+              ? {
+                  ...item,
+                  rating: rating,
+                  text: text,
+                }
+              : item
+          )
+        );
+      } else {
+        let newFeedback = {
+          id: feedbackEdit.item.id,
+          rating: rating,
+          text: text,
+        };
+
+        // handleInsert method is nothing but the setFeedback useState function
+        setFeedback([newFeedback, ...feedback]);
+      }
 
       setFeedbackEdit({
         item: {},
